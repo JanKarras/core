@@ -1,0 +1,65 @@
+Signature Part
+- check if signature is at the root of the git repository
+- check if the sugnature is the same as the one in the vm
+Mandatory Part
+Project overview
+- How does a VM works? A virtual machine (VM) operates by creating a software-based emulation of a physical computer within a host system.
+- why debian? Its easy to use and beginner friendly more stable than rocky and easy to update
+- differences between rocky and debian? different package managment systems (debian uses APT (Advanced Package Tool) and rocky uses yum or dnf) also debian is older than rocky and more stable than rocky.
+- what is the purpose of a VM? VMs allow multiple virtual systems to run on a single physical machine. VMs provide a sandboxed and controlled environment
+- what is the difference between aptitude and apt? both are command-line package management tools apt is just newer and more user-friendly because it has a stright forward syntax. with aptitude you have more options to use
+aptitude will use depency managment -> delete not needed programms at the end. Apt not
+simple setup
+- check for ufw: sudo ufw status numbered
+- check ssh status: sudo systemctl status ssh
+generate a secure connections between the VM from outside the VM
+User
+- getent group sudo
+- getent group user42
+- sudo adduser (username)
+- sudo groupadd evaluating
+- sudo usermod -aG evaluating (username)
+- groups (username)
+- for password policy: sudo nano /etc/pam.d/common-password
+- changing hostname: sudo nano /etc/hostname
+- to view partitions: lsblk
+- how does LVM work? LVM (Logical Volume Manager) is a system that manages disk drivers and creates logical volumes to provide more flexibility and ease of managment in handaling storage. we have Physical Volumes (PV), Volume Groups (VG) and Logical Volume (LV).
+Sudo
+- sudo check: dpkg -l | grep sudo
+- enables users to execute specific commands or perform actions that require elevated permissions.
+- sudo visudo
+- sudo nano /etc/login.defs
+- sudo ufw status
+- UFW stands for uncomplicated firewall. its a user fiendly front end management netfilter. you can set up rules for the port
+- for port 8080: sudo ufw allow 8080
+- check with sudo ufw status numbered
+- then delete 8080 with sudo ufw delete 2, check again then sudo ufw delete 3
+SSH
+- checking status: sudo systemctl status ssh
+- SSH (Secure Shell) is a network protocol that allows secure, encrypted communication between two devices over an unsecured network. SSH encypts data transmitted between devices.
+- to check the port: sudo nano /etc/ssh/sshd_config
+Script monitoring
+- sudo nano /usr/local/bin/monitoring.sh
+- cron is a time based job scheduler, that way we can execute our monitoring every 10 min.
+- sudo crontab -e
+
+to check for graphical interface use -> ls /usr/bin/*session
+to ckeck the ufw status -> sudo ufw status
+to check the ssh service -> sudo service ssh status
+to check for if debian is used head -n 2 /etc/os-release
+to check if my user is in sudo and user42 groups -> sudo getent group <groupname>
+to create a new user -> sudo adduser <username>
+to create a group -> sudo addgroup <groupname>
+to add a user to a group -> sudo adduser <username> <groupname>
+to check the hostname -> sudo nano /etc/hostname -> reboot
+to check the partions -> lsblk
+to check if sudo is installt -> dpkg -s sudo
+to add new user to sudo group -> sudo adduser <username> sudo
+to see the sudorules -> sudo nano /etc/sudoers.d/sudoconfig
+to see the sudo log -> ls /var/log/sudo/logs
+to check for ufw (firewall) -> spkg -s ufw && sudo service ufw status
+to check ufw rules -> sudo ufw status numbered
+to ad new rule -> sudo ufw allow <port-number>
+to delete new rule -> sudo ufw delete <rule-number>
+to change the monitoring script time -> sudo crontab -u root -e
+to stop/start crontab -> sudo /etc/init.d/cron stop/start
