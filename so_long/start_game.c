@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:27:47 by jkarras           #+#    #+#             */
-/*   Updated: 2024/02/27 21:16:14 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/02/28 13:40:42 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	get_collectables_count(char **map);
 int	get_e_x(char **map, int height);
 int	get_e_y(char **map, int height);
-
 
 void	free_col_on_exit(t_data *data)
 {
@@ -252,9 +251,8 @@ int	resize_images(t_data *data, int new_width, int new_height)
 	int	t;
 	int	s;
 	(data->img_ptrs)[0] = mlx_xpm_file_to_image(data->mlx_ptr, "./img/0.xpm", &t, &s);
-	if ((data->img_ptrs)[0] == NULL)
-		return (ft_putendl_fd("Error", 1), 0);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, (data->img_ptrs)[0], 300, 300);
+	return (0);
     img_data_old = mlx_get_data_addr((data->img_ptrs)[0], &bits, &size_line_old, &endian);
 
 	void *tmp = (data->img_ptrs)[0];
