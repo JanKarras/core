@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:37:12 by jkarras           #+#    #+#             */
-/*   Updated: 2024/02/22 16:43:53 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:31:20 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,6 @@ char	**copy_argv(char **argv, int len, int height)
 	return (argv_copy);
 }
 
-void	print_map(char **map)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (map[i] != NULL)
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			ft_putchar_fd(map[i][j], 1);
-			j++;
-		}
-		ft_putchar_fd('\n', 1);
-		i++;
-	}
-	ft_putchar_fd('\n', 1);
-}
-
 int	recrusiv_check(int x, int y, char **copy_argv, int col)
 {
 	if (x < 0 || y < 0 || copy_argv[y][x] == '1' || copy_argv[y][x] == 'v')
@@ -65,108 +45,6 @@ int	recrusiv_check(int x, int y, char **copy_argv, int col)
 	col = recrusiv_check(x, y + 1, copy_argv, col);
 	col = recrusiv_check(x, y - 1, copy_argv, col);
 	return (col);
-}
-
-int	get_p_x(char **map, int height)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < height)
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] == 'P')
-				return (j);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	get_p_y(char **map, int height)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < height)
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] == 'P')
-				return (i);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	get_e_x(char **map, int height)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < height)
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] == 'E')
-				return (j);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	get_e_y(char **map, int height)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < height)
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] == 'E')
-				return (i);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	get_collectables_count(char **map)
-{
-	int	i;
-	int	j;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (map[i] != NULL)
-	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
-			if (map[i][j] == 'C')
-				count++;
-			j++;
-		}
-		i++;
-	}
-	return (count);
 }
 
 int	check_path_is_valid(char **argv, int len, int height)

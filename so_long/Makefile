@@ -6,7 +6,7 @@
 #    By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 14:20:43 by jkarras           #+#    #+#              #
-#    Updated: 2024/02/22 15:53:01 by jkarras          ###   ########.fr        #
+#    Updated: 2024/02/28 19:43:21 by jkarras          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,12 @@ SRCS =	main.c \
 		create_map.c \
 		start_game.c \
 		check_path_is_valid.c \
+		get_koordinats.c \
+		destroy.c \
+		init.c \
+		resize_img.c \
+		move.c \
+		draw.c \
 
 OBJS = $(SRCS:.c=.o)
 MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit

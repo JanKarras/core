@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:34:22 by jkarras           #+#    #+#             */
-/*   Updated: 2024/02/27 15:03:11 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/02/28 19:26:25 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,27 +55,3 @@ int	main(int argc, char **argv)
 //valgrind --leak-check=full ./push_swap "4 2 1"
 //lldb ./checker '1 2 3'
 //r
-
-//int	main(int argc, char **argv)
-// {
-// 	int		fd;
-// 	t_list	**map_lst;
-
-// 	if (argc != 2)
-// 		return (ft_putendl_fd("1Error", 1), -1);
-// 	if (check_param(argv[1]) != 0)
-// 		return (ft_putendl_fd("2Error", 1), -1);
-// 	fd = open(argv[1], O_RDONLY);
-// 	argv = read_map(fd);
-// 	if (argv == NULL)
-// 		return (ft_putendl_fd("3Error", 1), -1);
-// 	if (check_map(argv) != 0)
-// 		return (free_argv(argv), ft_putendl_fd("4Error", 1), -1);
-// 	if (init_map_lst(&map_lst, argv, check_size(argv), get_height(argv)) == -1)
-// 		return (free_argv(argv), ft_putendl_fd("Error", 1), -1);
-// 	start_game();
-// 	clear_map(&map_lst, get_height(argv));
-// 	free(map_lst);
-// 	free_argv(argv);
-// 	return (0);
-// }
