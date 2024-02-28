@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:30:48 by jkarras           #+#    #+#             */
-/*   Updated: 2024/02/28 19:32:14 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/02/28 20:35:32 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_img_ptrs(t_data *data, int size)
 	i = 0;
 	while (i < size)
 	{
-		free((data->img_ptrs)[i]);
+		mlx_destroy_image(data->mlx_ptr, (data->img_ptrs)[i]);
 		i++;
 	}
 	free(data->img_ptrs);
@@ -37,12 +37,12 @@ void	free_img_ptrs(t_data *data, int size)
 
 int	on_destroy(t_data *data)
 {
+	free_img_ptrs(data, 5);
 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
 	mlx_destroy_display(data->mlx_ptr);
 	free(data->mlx_ptr);
 	free_argv(data->argv);
 	free_col_on_exit(data);
-	free_img_ptrs(data, 5);
 	free(data);
 	exit(0);
 	return (0);

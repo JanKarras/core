@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:37:47 by jkarras           #+#    #+#             */
-/*   Updated: 2024/02/28 19:38:09 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/02/28 20:51:54 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	resize(t_data *data, int szn, int szo, int i)
 	int	y2;
 	int	j;
 
-	x_ratio = (100 << 16) / *data->width;
-	y_ratio = (100 << 16) / *data->height;
+	x_ratio = (100 * 65536) / *data->width;
+	y_ratio = (100 * 65536) / *data->height;
 	while (i < *data->height)
 	{
 		j = 0;
 		while (j < *data->width)
 		{
-			x2 = ((j * x_ratio) >> 16);
-			y2 = ((i * y_ratio) >> 16);
+			x2 = ((j * x_ratio) / 65536);
+			y2 = ((i * y_ratio) / 65536);
 			data->n[(i * szn) + j * 4] = data->o[(y2 * szo) + x2 * 4];
 			data->n[(i * szn) + j * 4 + 1] = data->o[(y2 * szo) + x2 * 4 + 1];
 			data->n[(i * szn) + j * 4 + 2] = data->o[(y2 * szo) + x2 * 4 + 2];
