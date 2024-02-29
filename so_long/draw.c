@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:42:11 by jkarras           #+#    #+#             */
-/*   Updated: 2024/02/28 21:12:33 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/02/29 15:25:49 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ int	get_img_index(char c)
 
 int	draw_map(t_data *data)
 {
-	int	i;
-	int	j;
-	int	width;
-	int	height;
+	int		i;
+	int		j;
+	float	width;
+	float	height;
 
 	i = 0;
-	width = 5120 / check_size(data->argv);
-	height = 2880 / get_height(data->argv);
+	width = 2560 / check_size(data->argv);
+	height = 1315 / get_height(data->argv);
 	while ((data->argv)[i] != NULL)
 	{
 		j = 0;
