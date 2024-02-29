@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:42:11 by jkarras           #+#    #+#             */
-/*   Updated: 2024/02/28 19:42:41 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/02/28 21:12:33 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	draw_map(t_data *data)
 	int	height;
 
 	i = 0;
-	width = 1080 / check_size(data->argv);
-	height = 720 / get_height(data->argv);
+	width = 5120 / check_size(data->argv);
+	height = 2880 / get_height(data->argv);
 	while ((data->argv)[i] != NULL)
 	{
 		j = 0;
