@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:34:38 by jkarras           #+#    #+#             */
-/*   Updated: 2024/02/28 19:43:12 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/04 16:13:58 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,19 @@
 # define SO_LONG_H
 
 # include "./libft/libft.h"
-# include "mlx/mlx.h"
+# include "./mlx/mlx.h"
+
+# ifndef WINDOW_WIDTH
+
+#  define WINDOW_WIDTH 2560
+
+# endif
+
+# ifndef WINDOW_HEIGHT
+
+#  define WINDOW_HEIGHT 1315
+
+# endif
 
 typedef struct s_data
 {
@@ -68,7 +80,7 @@ int		inti_new_width_height(t_data *data);
 int		init_col_on_exit(t_data *data);
 t_data	*init(char **argv);
 //resize img
-char	*get_data_addr(void *img_ptr, int *sz_l, int i);
+char	*get_data_addr(void *img_ptr, int *sz_l);
 void	resize(t_data *data, int szn, int szo, int i);
 int		rezise_img(t_data *data, int new_width, int new_height, int i);
 //move

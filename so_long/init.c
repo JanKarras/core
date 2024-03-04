@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:34:37 by jkarras           #+#    #+#             */
-/*   Updated: 2024/02/29 16:14:02 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/04 14:31:48 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ int	inti_new_width_height(t_data *data)
 	data->height = (int *)malloc(sizeof(int));
 	if (data->height == NULL)
 		return (free(data->width), -1);
-	*data->width = 2560 / check_size(data->argv);
-	*data->height = 1315 / get_height(data->argv);
+	*data->width = WINDOW_WIDTH / check_size(data->argv);
+	*data->height = WINDOW_HEIGHT / get_height(data->argv);
 	return (0);
 }
 
@@ -111,7 +111,8 @@ t_data	*init(char **argv)
 		return (free_col_on_exit(data), free(data), NULL);
 	if (init_img_ptrs(data) != 0)
 		return (free_col_on_exit(data), free(data->mlx_ptr), free(data), NULL);
-	data->win_ptr = mlx_new_window(data->mlx_ptr, 2560, 1315, "Ape Trouble");
+	data->win_ptr = mlx_new_window(data->mlx_ptr,
+			WINDOW_WIDTH, WINDOW_HEIGHT, "Ape Trouble");
 	if (data->win_ptr == NULL)
 	{
 		free_col_on_exit(data);
