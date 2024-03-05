@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:37:12 by jkarras           #+#    #+#             */
-/*   Updated: 2024/02/28 19:31:20 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/05 19:00:08 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ int	recrusiv_check(int x, int y, char **copy_argv, int col)
 		return (col);
 	if (copy_argv[y][x] == 'C')
 		col--;
+	if (copy_argv[y][x] == 'E')
+	{
+		copy_argv[y][x] = 'v';
+		return (col);
+	}
 	copy_argv[y][x] = 'v';
 	col = recrusiv_check(x + 1, y, copy_argv, col);
 	col = recrusiv_check(x - 1, y, copy_argv, col);
