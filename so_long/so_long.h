@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:34:38 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/05 17:12:45 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/05 18:46:41 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 
 # ifndef WINDOW_WIDTH
 
-#  define WINDOW_WIDTH 2560
+#  define WINDOW_WIDTH 3840
 
 # endif
 
 # ifndef WINDOW_HEIGHT
 
-#  define WINDOW_HEIGHT 1315
+#  define WINDOW_HEIGHT 1970
 
 # endif
 

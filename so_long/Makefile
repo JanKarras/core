@@ -26,20 +26,21 @@ SRCS =	main.c \
 		draw.c \
 
 OBJS = $(SRCS:.c=.o)
-MLX_FLAGS = -Lmlx -lmlx -L/usr/X11/lib -lXext -lX11 -framework OpenGL -framework AppKit
-INCLUDES = -I/opt/X11/include -Imlx
+MLX_FLAGS = -L/usr/X11/lib -lX11 -lXext -lm
+MLX_DIR = ./mlx
+MLX = ./mlx/libmlx.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g
 RM = rm -rf
 
 all: $(NAME)
 
-$(NAME) : $(OBJS)
+$(NAME) : $(OBJS) $(MLX)
 	make -C libft
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) libft/libft.a
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) $(MLX_FLAGS) libft/libft.a $(MLX)
 
-.c.o:
-	$(CC) -c -o $@ $< $(INCLUDES)
+$(MLX):
+	make -C $(MLX_DIR)
 
 $(BONUS_NAME): $(BONUS_OBJS)
 	make -C libft
