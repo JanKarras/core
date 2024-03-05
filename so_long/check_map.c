@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:59:42 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/05 14:31:17 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/05 17:10:21 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ int	check_map(char **map)
 	int	height;
 
 	len = check_size(map);
-	if (len == -1 || len < 5)
-		return (free_argv(map), ft_putendl_fd("Map is not an regtangle", 1), -1);
+	if (len == -1)
+		return (free_argv(map), ft_putendl_fd("Error\nNo rectangle", 1), -1);
 	height = get_height(map);
 	if (check_walls(map, len, height) != 0)
-		return (free_argv(map), ft_putendl_fd("The Map must be sourrounded by walls", 1), -1);
+		return (free_argv(map), ft_putendl_fd("Error\nWrong Walls", 1), -1);
 	if (check_player_exit(map, 1, 1) != 0)
-		return (free_argv(map), ft_putendl_fd("There must be one Exit and one Player and atleast one Collectable", 1), -1);
+		return (free_argv(map), ft_putendl_fd("Error\nWrong P, C, E", 1), -1);
 	if (check_chars(map) != 0)
-		return (free_argv(map), ft_putendl_fd("Other chars than C, E, P, 0, 1 was found in the map", 1), -1);
+		return (free_argv(map), ft_putendl_fd("Error\nFlase chars", 1), -1);
 	if (check_path_is_valid(map, len, height) != 0)
-		return (free_argv(map), ft_putendl_fd("No Validpath found", 1), -1);
+		return (free_argv(map), ft_putendl_fd("Error\nNo valid path", 1), -1);
 	return (0);
 }
 

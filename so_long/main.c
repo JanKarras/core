@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:34:22 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/05 14:40:11 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/05 17:19:35 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,21 +31,21 @@ int	main(int argc, char **argv)
 	char	*text;
 
 	if (argc != 2)
-		return (ft_putendl_fd("Please pass atleast one Argument and not more", 1), -1);
+		return (ft_putendl_fd("Error\nWrong ARG number", 1), -1);
 	if (check_param(argv[1]) != 0)
-		return (ft_putendl_fd("Not an .ber file", 1), -1);
+		return (ft_putendl_fd("Error\nNot an .ber file", 1), -1);
 	fd = open(argv[1], O_RDONLY);
 	if (fd < 0)
-		return (ft_putendl_fd("Can't find file", 1), -1);
+		return (ft_putendl_fd("Error\nCan't find file", 1), -1);
 	text = read_map(fd);
 	if (text == NULL)
-		return (ft_putendl_fd("Malloc Error", 1), -1);
+		return (ft_putendl_fd("Error\nMalloc Error", 1), -1);
 	close(fd);
-	if (check_empty_line(text) != 0)
-		return (free(text), ft_putendl_fd("Empnty line found in map", 1), -1);
+	if (check_text(text) != 0)
+		return (free(text), ft_putendl_fd("Error\nNot a Map", 1), -1);
 	argv = ft_split(text, '\n');
 	if (argv == NULL)
-		return (free(text), ft_putendl_fd("Malloc Error", 1), -1);
+		return (free(text), ft_putendl_fd("Error\nMalloc Error", 1), -1);
 	if (check_map(argv) != 0)
 		return (-1);
 	if (start_game(argv) != 0)

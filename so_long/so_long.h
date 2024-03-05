@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:34:38 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/04 16:13:58 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/05 17:12:45 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_data
 //create_map
 int		check_param(char *file_name);
 char	*read_map(int fd);
-int		check_empty_line(char *text);
+int		check_text(char *text);
 //check_map
 int		check_map(char **map);
 int		check_size(char **map);

@@ -6,16 +6,20 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:54:22 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/05 14:23:09 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/05 17:14:13 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	check_empty_line(char *text)
+int	check_text(char *text)
 {
 	int	i;
 
+	if (ft_strlen(text) < 17)
+		return (-1);
+	if (text[0] == '\n')
+		return (-1);
 	i = 0;
 	while (text[i] != '\0' && text[i + 1])
 	{
