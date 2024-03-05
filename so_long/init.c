@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:34:37 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/05 18:43:08 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/05 18:50:26 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ t_data	*init(char **argv)
 		return (free_col_on_exit(data), free(data->mlx_ptr), free(data), NULL);
 	data->win_ptr = mlx_new_window(data->mlx_ptr,
 			WINDOW_WIDTH, WINDOW_HEIGHT, "Ape Trouble");
-	ft_putnbr_fd((int)WINDOW_WIDTH, 1);
 	if (data->win_ptr == NULL)
 	{
 		free_col_on_exit(data);
