@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:54:22 by jkarras           #+#    #+#             */
-/*   Updated: 2024/02/21 15:41:27 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/05 14:23:09 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,6 @@ char	*read_map(int fd)
 	char	*buffer;
 	char	*text;
 
-	if (fd == -1)
-		return (NULL);
 	buffer = (char *)malloc(sizeof(char) * 1024);
 	if (buffer == NULL)
 		return (NULL);
@@ -67,9 +65,11 @@ char	*read_map(int fd)
 	{
 		b = read(fd, buffer, 1023);
 		if (b == -1)
-			return (free(buffer), NULL);
+			return (free(buffer), free(text), NULL);
 		buffer[b] = '\0';
 		text = ft_strjoin(text, buffer);
+		if (text == NULL)
+			return (free(buffer), NULL);
 	}
 	return (free(buffer), text);
 }

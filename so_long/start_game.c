@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:27:47 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/04 16:41:53 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/05 14:34:24 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,8 @@ int	start_game(char **argv)
 
 	data = init(argv);
 	if (data == NULL)
-		return (-1);
-	if (draw_map(data) != 0)
-		ft_error(data);
+		return (ft_putendl_fd("Malloc error", 1), -1);
+	draw_map(data);
 	hooks(data);
 	mlx_loop(data->mlx_ptr);
 	return (0);
