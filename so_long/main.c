@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:34:22 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/05 14:25:09 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/05 14:40:11 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	main(int argc, char **argv)
 	char	*text;
 
 	if (argc != 2)
-		return (ft_putendl_fd("Only one argument allowed", 1), -1);
+		return (ft_putendl_fd("Please pass atleast one Argument and not more", 1), -1);
 	if (check_param(argv[1]) != 0)
 		return (ft_putendl_fd("Not an .ber file", 1), -1);
 	fd = open(argv[1], O_RDONLY);
