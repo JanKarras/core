@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:54:22 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/05 17:14:13 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/12 13:52:30 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ int	check_param(char *file_name)
 	int	len;
 
 	len = my_ft_strlen(file_name);
-	len = len - 5;
-	if (file_name[len] == '.')
+	len = len - 4;
+	if (file_name[len] != '.')
 		return (-1);
 	len++;
-	if (file_name[len] == 'b')
+	if (file_name[len] != 'b')
 		return (-1);
 	len++;
-	if (file_name[len] == 'e')
+	if (file_name[len] != 'e')
 		return (-1);
 	len++;
-	if (file_name[len] == 'r')
+	if (file_name[len] != 'r')
 		return (-1);
 	return (0);
 }
