@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 19:03:21 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/08 15:33:11 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/13 15:17:28 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,7 @@
 
 int	alloc_cmd_mem(t_data *data)
 {
-	char	*tmp;
-
-	tmp = ft_strjoin(data->f, " ");
-	if (tmp == NULL)
-		return (-1);
-	tmp = ft_strjoin(tmp, data->i);
-	if (tmp == NULL)
-		return (-1);
-	data->argv1 = ft_split(tmp, ' ');
-	free(tmp);
+	data->argv1 = ft_split(data->f, ' ');
 	if (data->argv1 == NULL)
 		return (-1);
 	data->argv2 = ft_split(data->s, ' ');

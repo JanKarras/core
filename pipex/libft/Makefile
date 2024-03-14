@@ -6,7 +6,7 @@
 #    By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/20 15:03:46 by jkarras           #+#    #+#              #
-#    Updated: 2024/03/12 13:22:20 by jkarras          ###   ########.fr        #
+#    Updated: 2024/03/14 13:27:44 by jkarras          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,8 @@ SRCS 	   = ft_strlen.c \
 			 ft_lstmap_bonus.c \
 			 ft_putchar_array.c \
 			 ft_free_char_arr.c \
+			 get_next_line_utils.c \
+			 get_next_line.c \
 
 OBJS = $(SRCS:.c=.o)
 

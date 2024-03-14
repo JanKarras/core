@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 11:21:33 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/12 13:21:53 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/14 13:22:58 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "ft_printf.h"
+# include "get_next_line.h"
 # include <sys/wait.h>
 # include <signal.h>
 
