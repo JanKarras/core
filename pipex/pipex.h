@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:45:46 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/08 15:24:29 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/03/25 15:57:34 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,18 @@ typedef struct s_data
 	char	**envp;
 	char	*path1;
 	char	*path2;
+	int		*fd_in;
+	int		*fd_out;
+	int		*pipefd_1;
+	int		*pipefd_2;
+	pid_t	*cpid1;
+	pid_t	*cpid2;
 }	t_data;
 
-int		init(char **argv, t_data *data);
-void	free_data(t_data *data);
+void	ft_free_data(t_data *data);
+int		init(t_data *data, char **argv);
+int		create_processes(t_data *data);
+int		parent_process(t_data *data);
+int		check_access(t_data *data);
 
 #endif
