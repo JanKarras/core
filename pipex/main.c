@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:42:48 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/25 16:37:23 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/04/09 19:13:17 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,10 @@ int	main(int argc, char **argv)
 	if (data == NULL)
 		return (ft_putendl_fd("Malloc Error", 1), -1);
 	if (init(data, argv) != 0)
-		return(-1);
-	if (check_access(data) != 0)
-		return(ft_free_data(data), -1);
-	if (create_processes(data) != 0)
-		return (ft_free_data(data), -1);
-	ft_free_data(data);
-	return (0);
+		return (ft_putendl_fd("Error", 1), -1);
+	if (check_infile(data) != 0)
+		data->infile_error = true;
+	processes(data);
 }
+
+//< infile.txt ls -l | wc -l > outfile

@@ -6,20 +6,18 @@
 #    By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 14:20:43 by jkarras           #+#    #+#              #
-#    Updated: 2024/03/14 15:05:46 by jkarras          ###   ########.fr        #
+#    Updated: 2024/04/11 16:53:02 by jkarras          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
 SRCS =	main.c \
-		free.c \
-		init.c \
-		processes.c \
+		utils.c \
 
 OBJS = $(SRCS:.c=.o)
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g
+CFLAGS = -Wall -Werror -Wextra
 RM = rm -rf
 
 all: $(NAME)
@@ -46,3 +44,22 @@ fclean : clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:45:46 by jkarras           #+#    #+#             */
-/*   Updated: 2024/04/09 18:52:34 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/04/15 13:09:57 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,7 @@
 
 # include "libft/libft.h"
 
-typedef struct s_data
-{
-	char	*i;
-	char	*o;
-	char	*f;
-	char	*s;
-	char	**argv1;
-	char	**argv2;
-	char	**envp;
-	char	*path1;
-	char	*path2;
-	int		*pipefd_1;
-	int		*pipefd_2;
-	pid_t	*cpid1;
-	bool	infile_error;
-	bool	f_error;
-	bool	s_error;
-}	t_data;
-
-void	ft_free_data(t_data *data);
-int		init(t_data *data, char **argv);
-int		check_infile(t_data *data);
-void	processes(t_data *data);
-
+void	error(int key, int fd);
+char	*find_path(char *cmd_name, char **envp, char **paths, char *path);
+void	execute(char *argv, char **envp, int key, int fd);
 #endif

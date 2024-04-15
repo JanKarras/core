@@ -6,7 +6,7 @@
 #    By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/02/08 14:20:43 by jkarras           #+#    #+#              #
-#    Updated: 2024/03/25 16:03:04 by jkarras          ###   ########.fr        #
+#    Updated: 2024/04/09 13:49:28 by jkarras          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,8 @@ NAME = pipex
 SRCS =	main.c \
 		free.c \
 		init.c \
-		check_access.c\
-		process.c\
-		parent_process.c\
+		check_infile.c \
+		processes.c \
 
 OBJS = $(SRCS:.c=.o)
 CC = cc
@@ -48,3 +47,15 @@ fclean : clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+
+
+
+
+
+
+
+
+
+
+

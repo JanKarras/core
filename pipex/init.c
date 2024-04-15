@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:46:55 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/25 16:14:32 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/04/09 18:53:33 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ int	init_path_helper(t_data *data)
 	data->path2 = ft_strjoin("/bin/", (data->argv2)[0]);
 	if (data->path2 == NULL)
 		return (ft_free_data(data), -1);
+	data->pipefd_1 = (int *)malloc(sizeof(int) * 2);
+	if (data->pipefd_1 == NULL)
+		return (ft_free_data(data), -1);
+	data->pipefd_2 = (int *)malloc(sizeof(int) * 2);
+	if (data->pipefd_2 == NULL)
+		return (ft_free_data(data), -1);
 	return (0);
 }
 
@@ -79,36 +85,29 @@ int	init_paths(t_data *data)
 	return (0);
 }
 
-int	init_fd_cpid(t_data *data)
-{
-	data->fd_in = (int *)malloc(sizeof(int));
-	if (data->fd_in == NULL)
-		return (ft_free_data(data), -1);
-	data->fd_out = (int *)malloc(sizeof(int));
-	if (data->fd_out == NULL)
-		return (ft_free_data(data), -1);
-	data->pipefd_1 = (int *)malloc(sizeof(int) * 2);
-	if (data->pipefd_1 == NULL)
-		return (ft_free_data(data), -1);
-	data->pipefd_2 = (int *)malloc(sizeof(int) * 2);
-	if (data->pipefd_2 == NULL)
-		return (ft_free_data(data), -1);
-	data->cpid1 = (pid_t *)malloc(sizeof(pid_t));
-	if (data->cpid1 == NULL)
-		return (ft_free_data(data), -1);
-	data->cpid2 = (pid_t *)malloc(sizeof(pid_t));
-	if (data->cpid2 == NULL)
-		return (ft_free_data(data), -1);
-	return (0);
-}
-
 int	init(t_data *data, char **argv)
 {
+	int	fd;
+
 	if (init_args_cmds(data, argv) != 0)
 		return (ft_putendl_fd("Malloc Error", 1), -1);
 	if (init_paths(data) != 0)
 		return (ft_putendl_fd("Malloc Error", 1), -1);
-	if (init_fd_cpid(data) != 0)
-		return (ft_putendl_fd("Malloc Error", 1), -1);
+	if (access(data->o, F_OK))
+	{
+		fd = open(data->o, O_WRONLY | O_CREAT, 0666);
+		if (fd == -1)
+		{
+			ft_free_data(data);
+			return (ft_putendl_fd("Can't create file", 1), -2);
+		}
+		close(fd);
+	}
+	data->cpid1 = (pid_t *)malloc(sizeof(pid_t));
+	if (data->cpid1 == NULL)
+		return (ft_free_data(data), -1);
+	data->f_error = false;
+	data->infile_error = false;
+	data->s_error = false;
 	return (0);
 }

@@ -1,38 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipex.h                                            :+:      :+:    :+:   */
+/*   check_infile.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 16:45:46 by jkarras           #+#    #+#             */
-/*   Updated: 2024/03/14 15:04:47 by jkarras          ###   ########.fr       */
+/*   Created: 2024/04/08 14:58:29 by jkarras           #+#    #+#             */
+/*   Updated: 2024/04/11 13:18:04 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PIPEX_H
+#include "pipex.h"
 
-# define PIPEX_H
-
-# include "libft/libft.h"
-
-typedef struct s_data
+int	check_infile(t_data *data)
 {
-	char	*i;
-	char	*o;
-	char	*f;
-	char	*s;
-	char	**argv1;
-	char	**argv2;
-	char	**envp;
-	char	*path1;
-	char	*path2;
-	pid_t	cpid1;
-	pid_t	cpid2;
-}	t_data;
-
-int		init(char **argv, t_data *data);
-void	free_data(t_data *data);
-int		create_processes(t_data *data);
-
-#endif
+	if (access(data->i, F_OK) == 0)
+	{
+		if (access(data->i, R_OK) == 0)
+			return (0);
+		else
+			return (ft_printf("%s: Permission denied\n", data->i), -1);
+	}
+	else
+		return (ft_printf("bash : %s: No such file or directory\n", data->i), -1);
+	return (0);
+}
