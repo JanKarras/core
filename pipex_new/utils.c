@@ -6,17 +6,15 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/11 16:51:53 by jkarras           #+#    #+#             */
-/*   Updated: 2024/04/15 14:35:17 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/04/17 14:03:50 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	error(int key, int fd)
+void	error(void)
 {
 	ft_putendl_fd("error", 2);
-	if (key == 1)
-		close(fd);
 	exit(EXIT_FAILURE);
 }
 
@@ -41,7 +39,7 @@ char	*find_path(char *cmd_name, char **envp, char **paths, char *path)
 		if (path == NULL)
 			return (free_char_arr(paths), free(part_path), NULL);
 		if (access(path, F_OK) == 0)
-			return (path);
+			return (free_char_arr(paths), path);
 		free(path);
 		i++;
 	}
@@ -49,7 +47,7 @@ char	*find_path(char *cmd_name, char **envp, char **paths, char *path)
 	return (NULL);
 }
 
-void	execute(char *argv, char **envp, int key, int fd)
+void	execute(char *argv, char **envp)
 {
 	char	**cmds;
 	char	*path;
@@ -58,13 +56,17 @@ void	execute(char *argv, char **envp, int key, int fd)
 		exit(EXIT_SUCCESS);
 	cmds = ft_split(argv, ' ');
 	if (cmds == NULL)
-		error(key, fd);
+		error();
 	path = find_path(cmds[0], envp, NULL, NULL);
 	if (path == NULL)
 	{
 		free_char_arr(cmds);
-		error(key, fd);
+		error();
 	}
 	if (execve(path, cmds, envp) == -1)
-		error(key, fd);
+	{
+		free_char_arr(cmds);
+		free(path);
+		error();
+	}
 }
