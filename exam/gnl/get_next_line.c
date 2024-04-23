@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/17 15:54:15 by jkarras           #+#    #+#             */
-/*   Updated: 2024/04/23 15:08:40 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/04/23 15:17:52 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*read_file(char *txt, int fd)
 	{
 		b = read(fd, buffer, BUFFER_SIZE);
 		if (b == -1)
-			return (free(buffer), NULL);
+			return (free(buffer), free(txt), NULL);
 		buffer[b] = '\0';
 		txt = str_join(txt, buffer);
 		if (txt == NULL)
