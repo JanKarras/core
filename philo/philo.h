@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:57:36 by jkarras           #+#    #+#             */
-/*   Updated: 2024/04/29 13:34:27 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/06/04 15:10:46 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,62 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <stdbool.h>
 
-typedef struct s_data
+# ifndef PHIL_MAX
+#  define PHIL_MAX 250
+# endif
+
+typedef struct s_programm	t_programm;
+
+typedef struct s_philo
 {
-	int	*philos;
-	int	*forks;
-	int
-}	t_data;
+	size_t			time_to_eat;
+	size_t			time_to_sleep;
+	pthread_t		thread;
+	size_t			meals_eaten;
+	size_t			id;
+	size_t			start_time;
+	size_t			last_meal;
+	bool			running;
+	pthread_mutex_t	*l_fork;
+	pthread_mutex_t	*r_fork;
+	t_programm		*prog;
+}	t_philo;
 
-int	main(int argc, char **argv);
+typedef struct s_programm
+{
+	size_t			nb_philos;
+	size_t			meals_to_eat;
+	size_t			time_to_die;
+	bool			start_flag;
+	bool			end;
+	int				argc;
+	pthread_t		monitor;
+	t_philo			philos[PHIL_MAX];
+	pthread_mutex_t	forks[PHIL_MAX];
+	pthread_mutex_t	stfu[1];
+}	t_programm;
 
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putendl_fd(char *s, int fd);
+void	ft_putnbr_fd(size_t n);
+size_t	get_time(void);
+size_t	atosize_t(char *s);
+void	print_meals_eaten_msg(t_programm *prog, t_philo *philo);
+void	print_uptate(char *str, t_philo *philo);
+void	print_dead_msg(pthread_mutex_t *stfu, size_t id);
+void	take_forks(t_philo *philo);
+void	put_forks(t_philo *philo);
+void	one_philo(t_philo *philo);
+void	*philo_thread(void *arg);
+void	*monitor_thread(void *arg);
+int		meals_eaten(t_programm *prog);
+int		is_dead(t_programm *prog);
+int		is_nrunning(t_programm *prog);
+int		is_running(t_programm *prog);
+void	my_sleep(size_t time);
+int		init_programm(t_programm *prog, int argc, char **argv);
+void	init_philos(t_programm *prog, char **argv);
+void	free_mutex_forks(t_programm *prog, int i);
 #endif

@@ -6,18 +6,15 @@
 #    By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/29 12:53:26 by jkarras           #+#    #+#              #
-#    Updated: 2024/06/04 15:07:45 by jkarras          ###   ########.fr        #
+#    Updated: 2024/06/04 15:48:06 by jkarras          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = philo
 
-SRCS =	main.c \
-		utils.c\
-		mutex.c\
-		init.c\
-		monitor.c\
-		philo.c\
+SRCS =	main_bonus.c \
+		utils_bonus.c\
+
 
 OBJS = $(SRCS:.c=.o)
 
