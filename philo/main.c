@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/03 12:29:39 by jkarras           #+#    #+#             */
-/*   Updated: 2024/06/04 15:10:21 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/06/10 17:46:16 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	free_mutex_forks(t_programm *prog, int i)
 	while (j < i)
 	{
 		pthread_mutex_destroy(&prog->forks[j]);
+		pthread_mutex_destroy(&prog->meal_locks[j]);
 		j++;
 	}
 }

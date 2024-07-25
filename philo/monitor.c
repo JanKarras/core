@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:25:28 by jkarras           #+#    #+#             */
-/*   Updated: 2024/06/04 15:13:10 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/06/17 14:56:53 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,18 @@ int	is_dead(t_programm *prog)
 	i = 0;
 	while (i < prog->nb_philos)
 	{
+		pthread_mutex_lock(prog->philos[i].meal_lock);
 		if (prog->philos[i].last_meal == 0)
 		{
 			if (get_time() - prog->philos[i].start_time >= prog->time_to_die)
-				return (print_dead_msg(prog->stfu, (prog->philos)[i].id), 0);
+				return (print_dead_msg(&prog->philos[i]), 0);
 		}
 		else
 		{
 			if (get_time() - prog->philos[i].last_meal >= prog->time_to_die)
-				return (print_dead_msg(prog->stfu, (prog->philos)[i].id), 0);
+				return (print_dead_msg(&prog->philos[i]), 0);
 		}
+		pthread_mutex_unlock(prog->philos[i].meal_lock);
 		i++;
 	}
 	return (1);
@@ -65,17 +67,22 @@ int	is_dead(t_programm *prog)
 int	meals_eaten(t_programm *prog)
 {
 	size_t	i;
+	bool	flag;
 
 	i = 0;
+	flag = true;
 	if (prog->argc != 6)
 		return (1);
 	while (i < prog->nb_philos)
 	{
-		if (prog->philos[i].meals_eaten >= prog->meals_to_eat)
-			return (print_meals_eaten_msg(prog, &prog->philos[i]), 0);
+		if (prog->philos[i].meals_eaten < prog->meals_to_eat)
+			flag = false;
 		i++;
 	}
-	return (1);
+	if (flag == false)
+		return (1);
+	else
+		return (print_meals_eaten_msg(prog), 0);
 }
 
 void	*monitor_thread(void *arg)

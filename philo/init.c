@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:27:33 by jkarras           #+#    #+#             */
-/*   Updated: 2024/06/04 15:12:35 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/06/10 17:09:31 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ int	init_programm(t_programm *prog, int argc, char **argv)
 	{
 		if (pthread_mutex_init(&prog->forks[i], NULL) != 0)
 			return (free_mutex_forks(prog, i), 1);
+		if (pthread_mutex_init(&prog->meal_locks[i], NULL) != 0)
+			return (free_mutex_forks(prog, i), 1);
 		i++;
 	}
 	if (pthread_mutex_init(prog->stfu, NULL) != 0)
@@ -35,7 +37,7 @@ int	init_programm(t_programm *prog, int argc, char **argv)
 	return (0);
 }
 
-void	init_philos(t_programm *prog, char **argv)
+int	init_philos(t_programm *prog, char **argv)
 {
 	size_t	i;
 
@@ -50,6 +52,7 @@ void	init_philos(t_programm *prog, char **argv)
 		prog->philos[i].last_meal = 0;
 		prog->philos[i].running = false;
 		prog->philos[i].prog = prog;
+		prog->philos[i].meal_lock = &prog->meal_locks[i];
 		prog->philos[i].r_fork = &prog->forks[i];
 		if (i != prog->nb_philos - 1)
 			prog->philos[i].l_fork = &prog->forks[i + 1];
@@ -57,4 +60,5 @@ void	init_philos(t_programm *prog, char **argv)
 			prog->philos[i].l_fork = &prog->forks[0];
 		i++;
 	}
+	return (0);
 }

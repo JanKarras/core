@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/04 14:24:03 by jkarras           #+#    #+#             */
-/*   Updated: 2024/06/04 14:26:26 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/06/10 17:53:23 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@ void	one_philo(t_philo *philo)
 	philo->running = false;
 }
 
+void	eating(t_philo *philo)
+{
+	take_forks(philo);
+	pthread_mutex_lock(philo->meal_lock);
+	philo->last_meal = get_time();
+	pthread_mutex_unlock(philo->meal_lock);
+	print_uptate("is eating", philo);
+	my_sleep(philo->time_to_eat);
+	put_forks(philo);
+	philo->meals_eaten += 1;
+}
+
 void	*philo_thread(void *arg)
 {
 	t_philo	*philo;
@@ -43,12 +55,7 @@ void	*philo_thread(void *arg)
 		my_sleep(15);
 	while (philo->prog->end == false)
 	{
-		take_forks(philo);
-		philo->last_meal = get_time();
-		print_uptate("is eating", philo);
-		my_sleep(philo->time_to_eat);
-		put_forks(philo);
-		philo->meals_eaten += 1;
+		eating(philo);
 		print_uptate("is sleeping", philo);
 		my_sleep(philo->time_to_sleep);
 		print_uptate("is thinking", philo);

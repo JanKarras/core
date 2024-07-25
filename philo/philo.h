@@ -6,7 +6,7 @@
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/29 12:57:36 by jkarras           #+#    #+#             */
-/*   Updated: 2024/06/04 15:10:46 by jkarras          ###   ########.fr       */
+/*   Updated: 2024/06/17 14:57:20 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_philo
 	bool			running;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
+	pthread_mutex_t	*meal_lock;
 	t_programm		*prog;
 }	t_philo;
 
@@ -53,6 +54,7 @@ typedef struct s_programm
 	pthread_t		monitor;
 	t_philo			philos[PHIL_MAX];
 	pthread_mutex_t	forks[PHIL_MAX];
+	pthread_mutex_t	meal_locks[PHIL_MAX];
 	pthread_mutex_t	stfu[1];
 }	t_programm;
 
@@ -61,9 +63,9 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(size_t n);
 size_t	get_time(void);
 size_t	atosize_t(char *s);
-void	print_meals_eaten_msg(t_programm *prog, t_philo *philo);
+void	print_meals_eaten_msg(t_programm *prog);
 void	print_uptate(char *str, t_philo *philo);
-void	print_dead_msg(pthread_mutex_t *stfu, size_t id);
+void	print_dead_msg(t_philo *philo);
 void	take_forks(t_philo *philo);
 void	put_forks(t_philo *philo);
 void	one_philo(t_philo *philo);
@@ -75,6 +77,6 @@ int		is_nrunning(t_programm *prog);
 int		is_running(t_programm *prog);
 void	my_sleep(size_t time);
 int		init_programm(t_programm *prog, int argc, char **argv);
-void	init_philos(t_programm *prog, char **argv);
+int		init_philos(t_programm *prog, char **argv);
 void	free_mutex_forks(t_programm *prog, int i);
 #endif

@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_bonus.h                                      :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkarras <jkarras@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/29 12:57:36 by jkarras           #+#    #+#             */
-/*   Updated: 2024/06/04 15:47:34 by jkarras          ###   ########.fr       */
+/*   Created: 2023/11/13 18:18:55 by jkarras           #+#    #+#             */
+/*   Updated: 2023/11/17 17:47:54 by jkarras          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILO_BONUS_H
+#include "libft.h"
 
-# define PHILO_BONUS_H
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+{
+	size_t	i;
 
-# include <stdio.h>
-# include <pthread.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include <sys/time.h>
-# include <stdbool.h>
-
-# ifndef PHIL_MAX
-#  define PHIL_MAX 250
-# endif
-
-void	ft_putstr_fd(char *s, int fd);
-void	ft_putendl_fd(char *s, int fd);
-void	ft_putnbr_fd(size_t n);
-size_t	get_time(void);
-size_t	atosize_t(char *s);
-
-#endif
+	if (*needle == '\0')
+		return ((char *)haystack);
+	while (*haystack && len > 0)
+	{
+		i = 0;
+		while (needle[i] != '\0' && needle[i] == haystack[i] && i < len)
+			i++;
+		if (needle[i] == '\0')
+			return ((char *)haystack);
+		haystack++;
+		len--;
+	}
+	return (NULL);
+}
